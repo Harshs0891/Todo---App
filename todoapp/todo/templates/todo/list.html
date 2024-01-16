@@ -1,0 +1,50 @@
+{% extends "todo/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert-info">Add Item</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value='submit'>
+        </form>
+    </div>
+    <div class="col-sm-7 offset-1">
+        <h4 class="text-center alert alert-info">Show Tasks</h4>
+        {% if tasks %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Task</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{task.task}}</td>
+                    <td>{{task.start_time}}</td>
+                    <td>{{task.end_time}}</td>
+                    <td>
+                        <a href="{% url "updatelist" task.id %}" class="btn btn-warning">Edit</a>
+                        <form action="{% url "deletelist" task.id %}" method='POST' class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table> 
+        {% else  %}
+        <h1>No Tasks To show</h1>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{% static "todo/css/bootstrap.min.css" %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center alert alert-danger">
+            <h2>My Todo App</h2>
+        </div>
+        {% block content %}
+        
+        {% endblock content %}
+    </div>
+
+    <script src="{% static "todo/js/jquery.js" %}"></script>
+    <script src="{% static "todo/js/popper.js" %}"></script>
+    <script src="{% static "todo/js/bootstrap.min.js" %}"></script>
+</body>
+</html>
